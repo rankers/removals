@@ -1,0 +1,17 @@
+<div class="container">
+  <form role="form" ng-submit="addRoom()">
+    <div ng-repeat="room in rooms">
+        <p>{{room}}</p>
+        <input type="text" class="form-control">
+    </div>
+
+    <div ng-show="rooms.length == 0">
+      <div class="input-group">
+        <input ng-model="newRoomName" type="text" class="form-control">
+        <span class="input-group-btn">
+          <input type="submit" class="btn btn-primary" value="Add">
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
