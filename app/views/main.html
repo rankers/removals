@@ -1,17 +1,39 @@
 <div class="container">
-  <form role="form" ng-submit="addRoom()">
-    <div ng-repeat="room in rooms">
-        <p>{{room}}</p>
-        <input type="text" class="form-control">
+  <form role="form" ng-submit="addRoom()" id="roomForm">
+    <div class="input-group roomInput">
+      <input ng-model="newRoomName" type="text" class="form-control" placeholder="Enter a room name">
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary" value="Add">
+      </span>
     </div>
 
-    <div ng-show="rooms.length == 0">
-      <div class="input-group">
-        <input ng-model="newRoomName" type="text" class="form-control">
-        <span class="input-group-btn">
-          <input type="submit" class="btn btn-primary" value="Add">
-        </span>
-      </div>
+    <p class="bg-danger text-center" ng-show="error">Please enter a unique non empty room name</p>
+
+     <div ng-repeat="room in rooms">
+      <span ng-if="$index % 3 == 0">
+        <div class="row">
+          <div class="col-sm-4" ng-if="rooms[$index+0]">
+            <div class="room">
+              <a href="#/room/{{rooms[$index+0].id}}"><h3>{{rooms[$index+0].name}}</h3></a>
+            </div>
+          </div>
+          <div class="col-sm-4" ng-if="rooms[$index+1]">
+            <div class="room">
+              <a href="#/room/{{rooms[$index+1].id}}"><h3>{{rooms[$index+1].name}}</h3></a>
+            </div>
+          </div>
+          <div class="col-sm-4" ng-if="rooms[$index+2]">
+            <div class="room">
+              <a href="#/room/{{rooms[$index+2].id}}"><h3>{{rooms[$index+2].name}}</h3></a>
+            </div>
+          </div>
+        </div>
+      </span>
     </div>
+
+    <div ng-show="rooms.length == 0" class="text-center">
+      To get started add a room!
+    </div>
+
   </form>
 </div>

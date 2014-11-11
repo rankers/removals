@@ -1,5 +1,5 @@
 angular.module('removalsApp')
-    .factory('storageSrvc', function ($q) {
+    .factory('storageSrvc', function ($q, _) {
         'use strict';
 
         var STORAGE_ID = 'storageSrvc';
@@ -8,12 +8,16 @@ angular.module('removalsApp')
             rooms : [],
             items : [],
 
-            _getFromLocalStorage: function () {
-                return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+            _storeName: function(objectType){
+                return objectType + '-' + STORAGE_ID;
             },
 
-            _saveToLocalStorage: function (objects) {
-                localStorage.setItem(STORAGE_ID, JSON.stringify(objects));
+            _getFromLocalStorage: function (objectType) {
+                return JSON.parse(localStorage.getItem(storageSrvc._storeName(objectType)) || '[]');
+            },
+
+            _saveToLocalStorage: function (objectType, objects) {
+                localStorage.setItem(storageSrvc._storeName(objectType), JSON.stringify(objects));
             },
 
             delete: function (objectType, object) {
@@ -28,11 +32,26 @@ angular.module('removalsApp')
                 return deferred.promise;
             },
 
-            get: function (objectType) {
+            getAll: function (objectType) {
                 var deferred = $q.defer();
 
-                angular.copy(storageSrvc._getFromLocalStorage(), storageSrvc[objectType]);
+                angular.copy(storageSrvc._getFromLocalStorage(objectType), storageSrvc[objectType]);
                 deferred.resolve(storageSrvc[objectType]);
+
+                return deferred.promise;
+            },
+
+            getById: function(objectType, objectId){
+                var deferred = $q.defer();
+                var allItems = storageSrvc._getFromLocalStorage(objectType);
+                var itemToReturn;
+                _.each(allItems, function(item){
+                    if (item.id === objectId){
+                        itemToReturn = item;
+                    }
+                });
+
+                deferred.resolve(itemToReturn);
 
                 return deferred.promise;
             },
@@ -42,7 +61,7 @@ angular.module('removalsApp')
                 var objectTypeArray = storageSrvc[objectType];
                 objectTypeArray.push(object);
 
-                storageSrvc._saveToLocalStorage(objectTypeArray);
+                storageSrvc._saveToLocalStorage(objectType, objectTypeArray);
                 deferred.resolve(objectTypeArray);
 
                 return deferred.promise;
@@ -53,7 +72,7 @@ angular.module('removalsApp')
                 var objectTypeArray = storageSrvc[objectType];
                 objectTypeArray[index] = object;
 
-                storageSrvc._saveToLocalStorage(objectTypeArray);
+                storageSrvc._saveToLocalStorage(objectType, objectTypeArray);
                 deferred.resolve(objectTypeArray);
 
                 return deferred.promise;

@@ -1,0 +1,18 @@
+<div class="container">
+  <h3>Room: {{room.name}}</h3>
+
+  <form role="form" ng-submit="addItem()">
+    <div ng-repeat="item in items">
+        <p>{{item}}</p>
+    </div>
+
+    <div ng-show="items.length === 0">
+      No items recorded for this room - why not add some?
+    </div>
+    <div class="input-group">
+      <span class="input-group-btn">
+        <input type="submit" class="btn btn-primary" value="Add">
+      </span>
+    </div>
+  </form>
+</div>

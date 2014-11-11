@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'underscore'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -33,4 +34,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .constant('roomType', 'rooms')
+  .constant('itemType', 'items');
