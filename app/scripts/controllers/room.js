@@ -27,7 +27,6 @@ angular.module('removalsApp')
 
     $scope.addItem = function(){
         storageSrvc.insert(itemType, {
-            id: $scope.items.length,
             roomId: roomIdInt,
             name: $scope.name,
             weight: $scope.weight,
