@@ -38,15 +38,26 @@
       </div>
     </div>
   </form>
-    
-  <div ng-repeat="item in items">
-    <div class="item">
-      <h4>{{item.name}}</h4>
-      <p class="text-muted">{{item.desc}}</p>
-    </div>
-  </div>
 
-  <div ng-show="items.length === 0">
+  <div class="text-center" ng-show="items.length === 0">
     No items recorded for this room - why not add some?
   </div>
+    
+  <table ng-show="items.length !== 0" class="table table-striped table-hover"> 
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Weight (kg)</th>
+      <th>Fragile</th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in items">
+        <td>{{item.name}}</td>
+        <td>{{item.desc}}</td>
+        <td>{{item.weight}}</td>
+        <td>{{item.fragile}}</td>
+      </tr>
+    </tbody>
+
+  </table>
 </div>

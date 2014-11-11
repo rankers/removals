@@ -14,11 +14,15 @@ angular.module('removalsApp')
         $scope.room = room;
     });
 
-    storageSrvc.getAll(itemType).then(function(){
-        $scope.items = _.filter(storageSrvc.items, function(item){
-            return item.roomId === roomIdInt;
+    function retreiveItems(){
+        storageSrvc.getAll(itemType).then(function(){
+            $scope.items = _.filter(storageSrvc.items, function(item){
+                return item.roomId === roomIdInt;
+            });
         });
-    });
+    };
+
+    retreiveItems();
 
     $scope.name= '';
     $scope.weight = '';
@@ -32,6 +36,8 @@ angular.module('removalsApp')
             weight: $scope.weight,
             desc: $scope.desc,
             fragile:$scope.fragile
+        }).then(function(){
+            retreiveItems();
         });
     };
 
