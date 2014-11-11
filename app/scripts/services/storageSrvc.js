@@ -20,14 +20,13 @@ angular.module('removalsApp')
                 localStorage.setItem(storageSrvc._storeName(objectType), JSON.stringify(objects));
             },
 
-            delete: function (objectType, object) {
+            deleteObj: function (objectType, object) {
                 var deferred = $q.defer();
-                var objectTypeArray = storageSrvc[objectType];
-                var indexToRemove = objectTypeArray.indexOf(object);
-                objectTypeArray.splice(indexToRemove, 1);
+                var indexToRemove = storageSrvc[objectType].indexOf(object);
+                storageSrvc[objectType].splice(indexToRemove, 1);
 
-                storageSrvc._saveToLocalStorage(objectTypeArray);
-                deferred.resolve(objectTypeArray);
+                storageSrvc._saveToLocalStorage(objectType, storageSrvc[objectType]);
+                deferred.resolve(storageSrvc[objectType]);
 
                 return deferred.promise;
             },
@@ -67,13 +66,13 @@ angular.module('removalsApp')
                 return deferred.promise;
             },
 
-            put: function (objectType, object, index) {
+            put: function (objectType, object) {
                 var deferred = $q.defer();
-                var objectTypeArray = storageSrvc[objectType];
-                objectTypeArray[index] = object;
+                var index = storageSrvc[objectType].indexOf(object);
+                storageSrvc[objectType][index] = object;
 
-                storageSrvc._saveToLocalStorage(objectType, objectTypeArray);
-                deferred.resolve(objectTypeArray);
+                storageSrvc._saveToLocalStorage(objectType, storageSrvc[objectType]);
+                deferred.resolve(storageSrvc[objectType]);
 
                 return deferred.promise;
             }

@@ -25,7 +25,7 @@ angular.module('removalsApp')
             return;
         }
 
-        if (_.contains(_.map($scope.rooms, function(room){return room.name}), $scope.newRoomName)){
+        if (_.contains(_.map($scope.rooms, function(room){return room.name;}), $scope.newRoomName)){
             $scope.error = true;
             return;
         }
