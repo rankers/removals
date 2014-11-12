@@ -1,3 +1,4 @@
+// https://github.com/tastejs/todomvc - inspired by local storage example given in this repository.
 angular.module('removalsApp')
     .factory('storageSrvc', function ($q, _) {
         'use strict';
