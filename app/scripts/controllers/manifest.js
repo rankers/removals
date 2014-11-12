@@ -34,7 +34,7 @@ angular.module('removalsApp')
 
             room.allOthers = _.filter(roomItems, function(item){
                 return !(_.contains(room.byFragility, item)|| _.contains(room.byWeight, item));
-            })
+            });
         });
     });
 });
