@@ -1,0 +1,21 @@
+<h3>Weight</h3>
+<div ng-repeat="room in rooms">
+    <div ng-repeat="item in room.byWeight">
+        <div>Room: {{room.name}}, Description: {{item.desc}}, Weight: {{item.weight}}</div>
+    </div>
+</div>
+
+<h3>Fragile</h3>
+<div ng-repeat="room in rooms">
+    <div ng-repeat="item in room.byFragility">
+        <div>Room: {{room.name}}, Description: {{item.desc}}, Weight: {{item.weight}}</div>
+    </div>
+</div>
+
+<h3>All Others</h3>
+<div ng-repeat="room in rooms">
+    <div ng-repeat="item in room.allOthers">
+        <div>Room: {{room.name}}, Description: {{item.desc}}, Weight: {{item.weight}}</div>
+    </div>
+{{room.allOthers}}
+</div>

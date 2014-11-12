@@ -31,6 +31,10 @@ angular
         templateUrl: 'views/room.html',
         controller: 'RoomCtrl'
       })
+      .when('/manifest', {
+        templateUrl: 'views/manifest.html',
+        controller: 'ManifestCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

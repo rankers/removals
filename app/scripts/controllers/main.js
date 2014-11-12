@@ -37,5 +37,4 @@ angular.module('removalsApp')
     $scope.editRoom = function(){
         //TODO
     };
-
   });

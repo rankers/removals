@@ -18,8 +18,7 @@ body {
   border-bottom: 1px solid #e5e5e5;
 }
 /* Make the masthead heading the same height as the navigation */
-.header h3 {
-  margin-top: 0;
+.header h1 {
   margin-bottom: 0;
   line-height: 40px;
   padding-bottom: 19px;
@@ -150,4 +149,9 @@ body {
 
  .table-hover tbody tr:hover td {
     background: LightGray;
+}
+
+a.no-underline:hover{
+  text-decoration: none;
+  color: #666;
 }
